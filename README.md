@@ -15,9 +15,9 @@ You may have another copy of Python already installed on your computer, and this
 
 We want to be able to run Python scripts that call in the `arcpy` module. Because `arcpy` is a proprietary Python module, it cannot just be downloaded from the internet and installed on your computer, and it will not run with any installation of Python. It will only run with the installation of Python you received with your installation of ArcGIS (10.3.1 in my case). Therefore, we need to show the computer where it can find this installation of ArcGIS, and make sure that it finds this installation before it finds any of the other Python installations you may have on your computer.
 
-On your Windows 7 computer, navigate to `Control Panel>System and Security>System>Advanced System settings`. Once you open the System Properties window, select the `Environment Variables` button. If you have administrative privileges on your computer, select the variable "Path" under System variables. If you do not have administrative privileges on your computer, select the variable "PATH" under User variables. Without deleting directories currently found in the "Path" (or "PATH") variables, add the following directories to your path, with each directory separated by a semicolon:
+On your Windows 7 computer, navigate to `Control Panel>System and Security>System>Advanced System settings`. Once you open the System Properties window, select the "Environment Variables" button. If you have administrative privileges on your computer, select the variable "Path" under System variables. If you do not have administrative privileges on your computer, select the variable "PATH" under User variables. Without deleting directories currently found in the "Path" (or "PATH") variables, add the following directories to your path, with each directory separated by a semicolon:
 ```
-C:\Python27\ArcGIS10.3;C\Python27\ArcGIS10.3\Scripts;
+C:\Python27\ArcGIS10.3;
 ```
 The Path variable provides a list of directories your computer will look in when you type a command in the command window. Now that you have added the location of ArcGIS's Python installation to your path, your computer will be able to find that installation when you attempt to launch Python in the Command Prompt window, or when you execute Python scripts.
 
@@ -25,7 +25,31 @@ To confirm this, open up your Command Prompt window and type `python`. After a m
 
 ![alt text](https://github.com/mwibbenmeyer/scripting_with_python_and_arcpy/blob/master/command_prompt_window.png "Logo Title Text 1") 
 
-If that works, you're ready to start implementing ArcGIS toolbox commands using Python scripts! If you successfully loaded Python, but you received an error message after you typed `import arcpy`, you may have another installation of Python on your computer, in addition to the installation provided by ArcGIS. The problem then, is that when you launch Python, your computer is launching the previously installed version, rather than the version provided with ArcGIS, which is capable of importing the arcpy module. To correct this, examine your path variable for another Python directory. If another Python directory is listed in your path, your computer is likely finding `python.exe` within that directory before it gets around to searching `C:\Python27\ArcGIS10.3`, and so it is loading the wrong installation of Python. To correct this, either delete the old Python directory from your path, or place it at the end of the list, after `C:\Python27\ArcGIS10.3`.
+If that works, you're ready to start implementing ArcGIS toolbox commands using Python scripts! If you successfully loaded Python, but you received an error message after you typed `import arcpy`, the problem is likely that you have another installation of Python on your computer in addition to the installation provided by ArcGIS. So when you launch Python, your computer is launching the previously installed version, rather than the version provided with ArcGIS, which is capable of importing the arcpy module. To correct this, examine your path variable for another Python directory. If another Python directory is listed in your path, your computer is likely finding `python.exe` within that directory before it gets around to searching `C:\Python27\ArcGIS10.3`, and so it is loading the wrong installation of Python. To correct this, either delete the old Python directory from your path, or place it at the end of the list, after `C:\Python27\ArcGIS10.3`.
 
 ## Using arcpy with other Python modules
+
+To make full use of arcpy and Python, you may want to use one of the many existing user-written Python modules in your Python scripts. pip is a command line program that is capable of installing Python modules from the internet. Navigate  here(https://pip.pypa.io/en/stable/installing/) and download `get-pip.py`, a script for installing pip, to `C:/Users/username/Downloads/`. Open the command prompt window and type `cd C:\Python27\ArcGIS10.3\`. Then execute the following command:
+```
+python C:/Users/username/Downloads/get-pip.py
+```
+The script will run and will install pip within your ArcGIS Python folder structure. To confirm this, use Windows Explorer to navigate to `C:\Python27\ArcGIS10.3\Scripts\`. You should find a variety of newly installed applications, including pip, wheel, and easy_install. 
+
+Last, before using pip, you need to make sure your computer knows where it is. As we did before, we need to edit the path. Navigate to `Control Panel>System and Security>System>Advanced System settings`, click on "Environment variables", and add `C:\Python27\ArcGIS10.3\Scripts;` to your System "Path" variable or your User "PATH" variable, depending your level of administrative privileges.
+
+Now, try installing a user-written module using pip. Try installing pandas, a popular data analysis module. Open the Windows command prompt window and type:
+```
+pip install pandas
+```
+If you are installing the package on your personal machine, you will (hopefully) receive a message that says that you have successfully installed pandas. If you are using a shared machine, you may not have privileges to install pandas into a system folder. A solution is to instead install the module to a user folder. Type:
+```
+pip install pandas --user
+```
+Now (hopefully), pandas should have installed in a user directory, and will be available for use in your Python/arcpy scripts. To confirm, type the following commands in a new command prompt window:
+```
+python
+import arcpy
+import pandas
+```
+If arcpy and pandas both import successfully, you're good to go!
 
