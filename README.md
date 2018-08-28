@@ -11,7 +11,7 @@ A disadvantage of running ArcGIS using Python and `arcpy` is that is can be a li
 
 You may have another copy of Python already installed on your computer, and this could create issues when you launch Python and attempt to import the `arcpy` module. In the tutorial, I'll explain what you should do to make sure that your computer is launching the ArcGIS installation of Python, rather than the previously installed version, so that you can successfully import the `arcpy` module.
 
-## Step 1: Launching the ArcGIS Python installation from the command line
+## Launching the ArcGIS Python installation from the command line
 
 We want to be able to run Python scripts that call in the `arcpy` module. Because `arcpy` is a proprietary Python module, it cannot just be downloaded from the internet and installed on your computer, and it will not run with any installation of Python. It will only run with the installation of Python you received with your installation of ArcGIS (10.3.1 in my case). Therefore, we need to show the computer where it can find this installation of ArcGIS, and make sure that it finds this installation before it finds any of the other Python installations you may have on your computer.
 
@@ -21,4 +21,11 @@ C:\Python27\ArcGIS10.3;C\Python27\ArcGIS10.3\Scripts;
 ```
 The Path variable provides a list of directories your computer will look in when you type a command in the command window. Now that you have added the location of ArcGIS's Python installation to your path, your computer will be able to find that installation when you attempt to launch Python in the Command Prompt window, or when you execute Python scripts.
 
-To confirm this, open up your Command Prompt window and type `python`. 
+To confirm this, open up your Command Prompt window and type `python`. After a moment, the Python interpreter should load in your command prompt window. Once it has loaded, type `import arcpy` and hit enter. After several seconds (arcpy is a fairly large module, so it takes a few seconds to load), Python will prompt you to enter another command, and your command prompt window should look like this:
+
+![alt text](https://github.com/mwibbenmeyer/scripting_with_python_and_arcpy/blob/master/command_prompt_window.png "Logo Title Text 1") 
+
+If that works, you're ready to start implementing ArcGIS toolbox commands using Python scripts! If you successfully loaded Python, but you received an error message after you typed `import arcpy`, you may have another installation of Python on your computer, in addition to the installation provided by ArcGIS. The problem then, is that when you launch Python, your computer is launching the previously installed version, rather than the version provided with ArcGIS, which is capable of importing the arcpy module. To correct this, examine your path variable for another Python directory. If another Python directory is listed in your path, your computer is likely finding `python.exe` within that directory before it gets around to searching `C:\Python27\ArcGIS10.3`, and so it is loading the wrong installation of Python. To correct this, either delete the old Python directory from your path, or place it at the end of the list, after `C:\Python27\ArcGIS10.3`.
+
+## Using arcpy with other Python modules
+
