@@ -37,7 +37,7 @@ The script will run and will install pip within your ArcGIS Python folder struct
 
 Last, before using pip, you need to make sure your computer knows where it is. As we did before, we need to edit the path. Navigate to `Control Panel>System and Security>System>Advanced System settings`, click on "Environment variables", and add `C:\Python27\ArcGIS10.3\Scripts;` to your System "Path" variable or your User "PATH" variable, depending your level of administrative privileges.
 
-Now, try installing a user-written module using pip. Try installing pandas, a popular data analysis module. Open the Windows command prompt window and type:
+Now, try installing a user-written module using pip. Try installing pandas, a popular data analysis module. Click "Okay" within the Environment Variables window, open a new Windows command prompt window, and type:
 ```
 pip install pandas
 ```
