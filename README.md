@@ -51,5 +51,5 @@ python
 import arcpy
 import pandas
 ```
-If arcpy and pandas both import successfully, you're good to go!
+If arcpy and pandas both import successfully, you're ready to begin writing scripts that integrate commands from both the arcpy and pandas modules. You also now know how to use pip to easily install any other user-written Python module you might want to use.
 
