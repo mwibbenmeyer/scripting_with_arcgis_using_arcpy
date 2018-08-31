@@ -1,4 +1,4 @@
-# Scripting with Python and Arcpy
+# Scripting with ArcGIS and Python using Arcpy
 
 This is a brief tutorial for how to get started scripting ArcGIS commands in Python using Arcpy. Arcpy is a proprietary Python module that allows ArcGIS toolbox commands to be implemented through simple Python commands. There are many advantages to using `arcpy`, rather than manually executing commands in ArcMap or using ArcMap's Model Builder. Unlike manually executing toolbox commands in ArcMap, scripting in Python provides a record of your work, which you can return to to edit or check your work. Model Builder also provides a record of your work; however, it comes with some disadvantages. Writing iterative loops in Model Builder is confusing, and it is not possible to write multiple nested loops. Python code is ideal for simply executing repeated commands using loops or, even better, parallelized operations across multiple computer cores. Finally, my experience is that ArcGIS commands executed using Python codes run much faster, and throw mysterious error messages far less often.
 
